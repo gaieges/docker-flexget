@@ -1,0 +1,5 @@
+[template]
+src = "config.yml.tmpl"
+dest = "/config.yml"
+owner = "flexget"
+mode = "0600"
