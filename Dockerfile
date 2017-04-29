@@ -14,9 +14,10 @@ ADD config.yml.tmpl /etc/confd/templates/config.yml.tmpl
 ADD flexget.toml /etc/confd/conf.d/flexget.toml
 ADD entrypoint.sh /entrypoint.sh
 
-EXPOSE 5050
+ENV FLEXGET_PORT 5050
+EXPOSE $FLEXGET_PORT
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["flexget", "daemon", "start", "--autoreload-config"]
 
-HEALTHCHECK --interval=20s --timeout=10s CMD curl http://localhost:5050 -o /dev/null -s
+HEALTHCHECK --interval=20s --timeout=10s CMD curl http://localhost:${FLEXGET_PORT} -o /dev/null -s
