@@ -1,12 +1,10 @@
 FROM alpine
 
-RUN [ "cross-build-start" ]
 RUN apk update && \
     apk add py-pip ca-certificates curl && \
     pip install -U pip && \
     pip install flexget transmissionrpc && \
     rm -rf /var/lib/apt/lists/*
-RUN [ "cross-build-end" ]
 
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
