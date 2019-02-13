@@ -6,10 +6,10 @@ RUN apk update && \
     pip install -U pip && \
     pip install flexget transmissionrpc && \
     rm -rf /var/lib/apt/lists/*
-RUN [ "cross-build-end" ]
 
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-arm64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
+RUN [ "cross-build-end" ]
 
 
 ADD config.yml.tmpl /etc/confd/templates/config.yml.tmpl
