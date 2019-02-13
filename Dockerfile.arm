@@ -1,14 +1,12 @@
 FROM balenalib/raspberrypi3-alpine
 
 RUN [ "cross-build-start" ]
-RUN apk update && \
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+    apk update && \
     apk add py-pip ca-certificates curl && \
     pip install -U pip && \
     pip install flexget transmissionrpc && \
     rm -rf /var/lib/apt/lists/*
-
-ADD https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-arm64 /usr/local/bin/confd
-RUN chmod +x /usr/local/bin/confd
 RUN [ "cross-build-end" ]
 
 
