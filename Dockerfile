@@ -20,5 +20,8 @@ EXPOSE $FLEXGET_PORT
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["flexget", "daemon", "start", "--autoreload-config"]
 
-HEALTHCHECK --interval=20s --timeout=10s \
+HEALTHCHECK \
+   --start-period=5s \
+   --interval=20s \
+   --timeout=10s \
         CMD curl http://localhost:${FLEXGET_PORT}
