@@ -1,4 +1,6 @@
 FROM alpine
+WORKDIR /app
+VOLUME /app
 
 RUN apk update && \
     apk add py-pip ca-certificates curl && \
@@ -12,12 +14,12 @@ RUN chmod +x /usr/local/bin/confd
 
 ADD config.yml.tmpl /etc/confd/templates/config.yml.tmpl
 ADD flexget.toml /etc/confd/conf.d/flexget.toml
-ADD entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh entrypoint.sh
 
 ENV FLEXGET_PORT 5050
 EXPOSE $FLEXGET_PORT
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["flexget", "daemon", "start", "--autoreload-config"]
 
 HEALTHCHECK \
