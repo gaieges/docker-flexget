@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi3-alpine
+FROM balenalib/raspberrypi3-alpine:3.8
 WORKDIR /app
 VOLUME /app
 
