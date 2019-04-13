@@ -1,6 +1,6 @@
 [template]
 src = "config.yml.tmpl"
-dest = "/config.yml"
+dest = "/app/config.yml"
 owner = "flexget"
 mode = "0600"
 keys = [
