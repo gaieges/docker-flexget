@@ -1,6 +1,5 @@
 FROM balenalib/raspberrypi3-alpine:3.8
-WORKDIR /app
-VOLUME /app
+WORKDIR /config
 
 RUN [ "cross-build-start" ]
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
@@ -14,12 +13,12 @@ RUN [ "cross-build-end" ]
 
 ADD config.yml.tmpl /etc/confd/templates/config.yml.tmpl
 ADD flexget.toml /etc/confd/conf.d/flexget.toml
-ADD entrypoint.sh entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
 
 ENV FLEXGET_PORT 5050
 EXPOSE $FLEXGET_PORT
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["flexget", "daemon", "start", "--autoreload-config"]
 
 HEALTHCHECK \
