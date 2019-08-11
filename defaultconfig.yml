@@ -1,6 +1,6 @@
 web_server:
   bind: 0.0.0.0
-  port: {{ getv "/flexget/port" }}
+  port: 5050
   web_ui: false
 
 tasks:
