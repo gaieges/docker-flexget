@@ -6,7 +6,7 @@ EXPOSE 5050
 RUN [ "cross-build-start" ]
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
     apk update && \
-    apk add py-pip ca-certificates curl confd && \
+    apk add py-pip ca-certificates curl && \
     pip install -U pip && \
     pip install flexget transmissionrpc && \
     rm -rf /var/lib/apt/lists/*
